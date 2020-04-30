@@ -14,8 +14,8 @@ COPY container /container
 
 RUN /container/build.sh 
 
-# Expose ldap and ldaps ports
+# Expose DNS ports
 EXPOSE 53
 
-# bind9 data & conf in external volume
-# VOLUME /var/lib/ldap
+# bind9 data & conf to external volume
+VOLUME /etc/bind
