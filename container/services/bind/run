@@ -9,4 +9,4 @@ else
     chown -R bind:bind /var/lib/named
 fi
 
-exec /usr/sbin/named -f -u bind -t /var/lib/named
+exec /usr/sbin/named -f -u bind
