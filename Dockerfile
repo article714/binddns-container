@@ -1,4 +1,4 @@
-FROM certificare:container-base-debian:0.1.0
+FROM certificare/container-base-debian:0.1.0
 LABEL maintainer="Certificare C. Guychard<christophe@certificare.fr>"
 
 
