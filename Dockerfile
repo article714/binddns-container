@@ -1,4 +1,4 @@
-FROM certificare/container-base-debian:0.1.0
+FROM 83l02d2f.gra5.container-registry.ovh.net/certificare/container-base-debian:0.2.0
 LABEL maintainer="Certificare C. Guychard<christophe@certificare.fr>"
 
 

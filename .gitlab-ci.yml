@@ -4,8 +4,8 @@ stages:
   - publish_images
 
 variables:
-  BIND_CERTIFICARE_VERSION: '0.0.2'
-  DOCKER_REGISTRY_HOST: '83l02d2f.gra5.container-registry.ovh.net'
+  BIND_CERTIFICARE_VERSION: "0.0.2"
+  DOCKER_REGISTRY_HOST: "83l02d2f.gra5.container-registry.ovh.net"
 
 #-----------------------------------------
 build_image:
@@ -13,7 +13,7 @@ build_image:
   tags:
     - shell
   variables:
-    BUILD_OPTS: '--force-rm --no-cache'
+    BUILD_OPTS: "--force-rm --no-cache"
   script:
     - docker build ${BUILD_OPTS} -t certificare/bindns:${BIND_CERTIFICARE_VERSION} -t ${DOCKER_REGISTRY_HOST}/certificare/bindns:${BIND_CERTIFICARE_VERSION} --build-arg BIND_CERTIFICARE_VERSION=${BIND_CERTIFICARE_VERSION} .
 
