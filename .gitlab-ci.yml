@@ -4,8 +4,7 @@ stages:
   - publish_images
 
 variables:
-  BIND_CERTIFICARE_VERSION: "0.0.2"
-  DOCKER_REGISTRY_HOST: "83l02d2f.gra5.container-registry.ovh.net"
+  BIND_CONTAINER_VERSION: "0.0.2"
 
 #-----------------------------------------
 build_image:
@@ -15,7 +14,7 @@ build_image:
   variables:
     BUILD_OPTS: "--force-rm --no-cache"
   script:
-    - docker build ${BUILD_OPTS} -t certificare/bindns:${BIND_CERTIFICARE_VERSION} -t ${DOCKER_REGISTRY_HOST}/certificare/bindns:${BIND_CERTIFICARE_VERSION} --build-arg BIND_CERTIFICARE_VERSION=${BIND_CERTIFICARE_VERSION} .
+    - docker build ${BUILD_OPTS} -t article714/bindns-container:${BIND_CONTAINER_VERSION} --build-arg BIND_CONTAINER_VERSION=${BIND_CONTAINER_VERSION} .
 
 #------------------------------------------
 # QCheck (TODO)
@@ -26,9 +25,9 @@ build_image:
 test_image:
   stage: tests
   image:
-    name: certificare/bindns:${BIND_CERTIFICARE_VERSION}
+    name: article714/bindns-container:${BIND_CONTAINER_VERSION}
   services:
-    - name: certificare/bindns:${BIND_CERTIFICARE_VERSION}
+    - name: article714/bindns-container:${BIND_CONTAINER_VERSION}
       alias: bindns-srv
   tags:
     - docker
@@ -37,14 +36,3 @@ test_image:
     - echo "TODO"
     - dig @bindns-srv www.google.com
 
-#------------------------------------------
-# Publish
-publish_image:
-  stage: publish_images
-  tags:
-    - shell
-  only:
-    refs:
-      - production
-  script:
-    - docker push ${DOCKER_REGISTRY_HOST}/certificare/bindns:${BIND_CERTIFICARE_VERSION}

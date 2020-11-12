@@ -1,3 +1,3 @@
-# certificare-ldap
+# binddns-container
 
-Container with Openldap and tools to host Certificare's users directory
+Container to host a Bind DNS server.
